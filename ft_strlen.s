@@ -1,4 +1,4 @@
-section .data
+ft_strlen:
     mov rax, rdi
 .loop:
     cmp [rdi], 0
