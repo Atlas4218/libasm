@@ -1,10 +1,16 @@
+.intel_syntax noprefix
+
+global ft_strcmp
+
+section .text
+
 ft_strcmp:
 
 .loop:
-    cmp [rdi], [rsi]
+    cmp rdi, rsi
     jnae .below
     jnbe .above
-    cmp [rdi], 0
+    cmp rdi, 0
     je .done
     inc rdi
     inc rsi

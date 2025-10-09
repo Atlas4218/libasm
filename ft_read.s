@@ -1,39 +1,15 @@
-section .data                           ;Data segment
-   userMsg db 'Please enter a number: ' ;Ask the user to enter a number
-   lenUserMsg equ $-userMsg             ;The length of the message
-   dispMsg db 'You have entered: '
-   lenDispMsg equ $-dispMsg                 
+.intel_syntax noprefix
 
-section .bss           ;Uninitialized data
-   num resb [rdi]
-	
-section .text          ;Code Segment
-   global _start
-	
-_start:                ;User prompt
+global ft_read
 
+section .text
+
+ft_read:
    ;Read and store the user input
    mov eax, 3
    mov ebx, rdi
-   mov ecx, num  
-   mov edx, rdi          ;5 bytes (numeric, 1 for sign) of that information
+   mov ecx, rsi  
+   mov edx, rdx          ;5 bytes (numeric, 1 for sign) of that information
    int 80h
-	
-   ;Output the message 'The entered number is: '
-   mov eax, 4
-   mov ebx, 1
-   mov ecx, dispMsg
-   mov edx, lenDispMsg
-   int 80h  
-
-   ;Output the number entered
-   mov eax, 4
-   mov ebx, 1
-   mov ecx, num
-   mov edx, 5
-   int 80h  
-    
-   ; Exit code
-   mov eax, 1
-   mov ebx, 0
-   int 80h
+	mov rax, edx
+   ret

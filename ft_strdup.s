@@ -1,10 +1,10 @@
-.intel_syntax noprefix
+global ft_strdup
 
-global ft_strcpy
-
+section .data
+    
 section .text
 
-ft_strcpy:
+ft_strdup:
     mov rax, rdi
 
 .loop:

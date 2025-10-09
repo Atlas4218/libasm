@@ -1,7 +1,13 @@
+.intel_syntax noprefix
+
+global ft_strlen
+
+section .text
+
 ft_strlen:
     mov rax, rdi
 .loop:
-    cmp [rdi], 0
+    cmp rdi, 0
     je .done
     inc rdi
     jmp .loop
