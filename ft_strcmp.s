@@ -1,30 +1,28 @@
-.intel_syntax noprefix
+            global  ft_strcmp
 
-global ft_strcmp
-
-section .text
+            section .text
 
 ft_strcmp:
+        .loop:
+            cmp     rdi, rsi
+            jl      .below
+            jg      .above
+            jne     .done
+            cmp     rdi, 0
+            cmovl     rax, 0
+            je      .done
+            inc     rdi
+            inc     rsi
+            jmp     .loop
 
-.loop:
-    cmp rdi, rsi
-    jnae .below
-    jnbe .above
-    cmp rdi, 0
-    je .done
-    inc rdi
-    inc rsi
-    jmp .loop
+        .below:
+            mov     rax, -1
+            ret
 
-.below:
-    mov rax, -1
-    ret
+        .above:
+            mow     rax, 1
+            ret
 
-.above:
-    mox rax, 1
-    ret
-
-.done:
-    mov rax, 0
-    ret
-    
+        .done:
+            ret
+        
