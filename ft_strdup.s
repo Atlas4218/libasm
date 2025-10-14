@@ -40,11 +40,11 @@ ft_strdup:
             push    rdi
             mov     rdi, rax
             call    _malloc
+            cmp     rax, 0
+            jle     error
             mov     rsi, rax
             pop     rdi
             call    ft_strcpy
-            cmp     rax, 0
-            jle     error
             jmp     done
 error:
             mov     rdi, 12
