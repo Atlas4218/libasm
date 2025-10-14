@@ -2,27 +2,25 @@
 
             section .text
 
-ft_strcmp:
-        .loop:
-            cmp     rdi, rsi
-            jl      .below
-            jg      .above
-            jne     .done
-            cmp     rdi, 0
-            cmovl     rax, 0
-            je      .done
-            inc     rdi
-            inc     rsi
-            jmp     .loop
+ft_strcmp: 
+            xor     rax, rax
+            xor     rdx, rdx
+            jmp     compare
+increment:  
+            cmp     byte[rdi+rdx], 0
+            je      done
+            inc     rdx
 
-        .below:
+compare:
+            cmp     byte[rdi+rdx], byte[rsi+rdx]
+            jg      greater
+            jl      lower
+            jmp     increment
+greater:
+            mov     rax, 1
+            jmp     done
+lower:
             mov     rax, -1
+            jmp     done
+done:       
             ret
-
-        .above:
-            mow     rax, 1
-            ret
-
-        .done:
-            ret
-        

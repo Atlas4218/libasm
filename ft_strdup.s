@@ -1,48 +1,53 @@
-global ft_strdup
+            global  ft_strdup
+            extern  _malloc
+            extern  errno_location
+            section .data
 
-section .data
-    
-section .text
+            section .text
+
+
+ft_strlen:  
+            xor     rax, rax
+            jmp     compare
+increment:  
+            inc     rax
+compare:    
+            cmp     byte [rdi+rax], 0
+            jne     increment
+done:       
+            ret
+
+
+ft_strcpy: 
+            xor     rax, rax
+            jmp     copy
+increment:  
+            inc     rax
+copy:
+            mov     byte[rsi+rax], byte[rdi+rax]
+            cmp     byte [rdi+rax], 0
+            jne     increment
+done:       
+            mov     rax, rsi
+            ret
+
 
 ft_strdup:
-    mov edi, rdi
-    call ft_strlen
-
-    buff resb rax
-
-    mov edi, rdi
-    mov esi, buff
-    call ft_strcpy
-
-    mov rax, buff
-    ret
-
-ft_strlen:
-    mov rax, rdi
-.loop:
-    cmp rdi, 0
-    je .done
-    inc rdi
-    jmp .loop
-
-.done:
-    len equ rdi - rax
-    mov rax, len
-    ret
-
-ft_strcpy:
-    mov rax, rdi
-
-.loop:
-    cmp rdi, 0
-    je .done
-    rsi equ rdi
-    inc rdi
-    inc rsi
-    jmp .loop
-
-.done:
-    movb rsi, 0
-    len equ rdi - rax
-    mov rax, len
-    ret
+            xor     rax, rax
+            cmp     rdi, 0
+            je      done
+            call    ft_strlen
+            push    rdi
+            mov     rdi, rax
+            call    _malloc
+            mov     rsi, rax
+            pop     rdi
+            call    ft_strcpy
+            cmp     rax, 0
+            jle     error
+            jmp     done
+error:
+            mov     rdi, 12
+            call    errno_location
+done:
+            ret

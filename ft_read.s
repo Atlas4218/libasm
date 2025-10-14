@@ -1,15 +1,17 @@
-.intel_syntax noprefix
-
-global ft_read
-
-section .text
+            global   ft_read
+            extern errno_location
+            section  .text
 
 ft_read:
-   ;Read and store the user input
-   mov eax, 3
-   mov ebx, rdi
-   mov ecx, rsi  
-   mov edx, rdx          ;5 bytes (numeric, 1 for sign) of that information
-   int 80h
-	mov rax, edx
-   ret
+            xor      rax, rax
+            mov      rax, 3
+            syscall
+            cmp     rax, 0
+            jl     error
+            jmp     done
+error:
+            mov     rdi, rax
+            call    errno_location
+            mov     rax, -1
+done:
+            ret
