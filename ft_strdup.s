@@ -47,7 +47,8 @@ ft_strdup:
             call    ft_strcpy
             jmp     done
 error:
-            mov     rdi, 12
+rax         equ     0 - rax
+            mov     rdi, rax
             call    errno_location
 done:
             ret

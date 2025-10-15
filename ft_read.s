@@ -10,6 +10,7 @@ ft_read:
             jl     error
             jmp     done
 error:
+rax         equ     0 - rax
             mov     rdi, rax
             call    errno_location
             mov     rax, -1
