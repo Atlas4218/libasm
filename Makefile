@@ -23,4 +23,8 @@ fclean:			clean
 
 re:				fclean $(NAME)
 
-.PHONY:			clean fclean re
+test:			$(NAME)
+				gcc $(FLAGS) -L. -lasm -o $(TEST) main.c
+				./$(TEST) < Makefile
+
+.PHONY:			clean fclean re test
