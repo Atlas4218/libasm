@@ -12,7 +12,8 @@ increment:
             inc     rdx
 
 compare:
-            cmp     byte[rdi+rdx], byte[rsi+rdx]
+            mov     dl, BYTE[rsi+rdx]
+            cmp     BYTE[rdi+rdx], dl
             jg      greater
             jl      lower
             jmp     increment

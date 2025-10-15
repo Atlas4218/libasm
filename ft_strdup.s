@@ -1,36 +1,11 @@
             global  ft_strdup
             extern  _malloc
             extern  errno_location
+            extern  ft_strlen
+            extern  ft_strcpy
             section .data
 
             section .text
-
-
-ft_strlen:  
-            xor     rax, rax
-            jmp     compare
-increment:  
-            inc     rax
-compare:    
-            cmp     byte [rdi+rax], 0
-            jne     increment
-done:       
-            ret
-
-
-ft_strcpy: 
-            xor     rax, rax
-            jmp     copy
-increment:  
-            inc     rax
-copy:
-            mov     byte[rsi+rax], byte[rdi+rax]
-            cmp     byte [rdi+rax], 0
-            jne     increment
-done:       
-            mov     rax, rsi
-            ret
-
 
 ft_strdup:
             xor     rax, rax
@@ -47,7 +22,7 @@ ft_strdup:
             call    ft_strcpy
             jmp     done
 error:
-rax         equ     0 - rax
+            neg     rax
             mov     rdi, rax
             call    errno_location
 done:
