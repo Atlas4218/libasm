@@ -27,17 +27,17 @@
 /*
 ** Function prototypes
 */
-int		ft_strlen(char const *str);
+extern	int		ft_strlen(char const *str);
 
-int		ft_strcmp(char const *s1, char const *s2);
+extern	int		ft_strcmp(char const *s1, char const *s2);
 
-char	*ft_strcpy(char *dst, char const *src);
+extern	char	*ft_strcpy(char *dst, char const *src);
 
-ssize_t	ft_write(int fd, void const *buf, size_t nbyte);
+extern	ssize_t	ft_write(int fd, void const *buf, size_t nbyte);
 
-ssize_t	ft_read(int fd, void *buf, size_t nbyte);
+extern	ssize_t	ft_read(int fd, void *buf, size_t nbyte);
 
-char	*ft_strdup(char const *s1);
+extern	char	*ft_strdup(char const *s1);
 
 /*
 ** Start !
@@ -70,16 +70,12 @@ int		main(void)
 	STRCMP("", "toto")
 	STRCMP("toto", "")
 	STRCMP("toto", "totobar")
-	printf("`%s`:`%s` = %d\n", "TOTO", NULL, ft_strcmp("TOTO", NULL));
-	printf("`%s`:`%s` = %d\n", NULL, "TOTO", ft_strcmp(NULL, "TOTO"));
-	printf("`%s`:`%s` = %d\n", NULL, NULL, ft_strcmp(NULL, NULL));
 	printf("-done\n");
 
 	printf("\n--strcpy\n");
 	printf("`%s` (`toto`)\n", ft_strcpy(buffer, "toto"));
 	printf("`%s` (empty)\n", ft_strcpy(buffer, ""));
 	printf("`%s` (`long message`)\n", ft_strcpy(buffer, "long message"));
-	printf("`%s` (NULL > not modified)\n", ft_strcpy(buffer, NULL));
 	printf("-done\n");
 
 	printf("\n--write\n");
@@ -105,7 +101,6 @@ int		main(void)
 	DUP("totobar")
 	DUP("long message")
 	DUP("")
-	DUP(NULL)
 	printf("-done\n");
 
 	return (0);

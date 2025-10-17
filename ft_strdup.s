@@ -9,11 +9,10 @@
 
 ft_strdup:
             xor     rax, rax
-            cmp     rdi, 0
-            je      done
             call    ft_strlen
             push    rdi
             mov     rdi, rax
+            inc     rdi
             call    _malloc
             cmp     rax, 0
             jle     error
