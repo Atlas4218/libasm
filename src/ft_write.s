@@ -1,5 +1,5 @@
             global  ft_write
-            extern  errno_location
+            extern  __errno_location
             section .text
 
 ft_write:
@@ -12,7 +12,7 @@ ft_write:
 error:
             neg     rax
             mov     rdi, rax
-            call    errno_location
+            call    __errno_location
             mov     rax, -1
 done:
             ret

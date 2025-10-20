@@ -10,11 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <stdio.h>
-
+#include "libasm.h"
 /*
 ** Useful macros
 */
@@ -23,21 +19,6 @@
 # define WRITE(s, x)		printf("^%ld (`%s`:%ld)\n", ft_write(STDOUT_FILENO, s, x), s, x);
 # define READ(b, x)			r = ft_read(STDIN_FILENO, buffer, x); printf("`%s`:%ld\n", buffer, r);
 # define DUP(s)				tmp = ft_strdup(s); printf("`%s` (`%s`)\n", tmp, s); free(tmp); tmp = NULL;
-
-/*
-** Function prototypes
-*/
-extern	int		ft_strlen(char const *str);
-
-extern	int		ft_strcmp(char const *s1, char const *s2);
-
-extern	char	*ft_strcpy(char *dst, char const *src);
-
-extern	ssize_t	ft_write(int fd, void const *buf, size_t nbyte);
-
-extern	ssize_t	ft_read(int fd, void *buf, size_t nbyte);
-
-extern	char	*ft_strdup(char const *s1);
 
 /*
 ** Start !

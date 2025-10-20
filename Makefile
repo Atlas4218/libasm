@@ -1,7 +1,16 @@
 
-SRCS		=	ft_strlen.s ft_strcmp.s ft_strcpy.s ft_write.s ft_read.s ft_strdup.s
-OBJS		=	$(SRCS:.s=.o)
+SRC 		= 	src
+INC			=	inc
+BIN			=	bin
 
+SRCS		=	${SRC}/ft_strlen.s\
+				${SRC}/ft_strcmp.s\
+				${SRC}/ft_strcpy.s\
+				${SRC}/ft_write.s\
+				${SRC}/ft_read.s\
+				${SRC}/ft_strdup.s
+
+OBJS		= 	${patsubst %,${BIN}/%, ${notdir ${SRCS:.s=.o}}}
 NA			=	nasm
 NA_FLAGS	=	-f elf64
 FLAGS 		=	-Wall -Werror -Wextra
@@ -9,24 +18,25 @@ NAME		=	libasm.a
 
 TEST		=	test
 
-%.o:			%.s
-				$(NA) $(NA_FLAGS) $<
+${BIN}/%.o : ${SRC}/%.s
+				mkdir -p ${BIN};\
+				${NA} ${NA_FLAGS} -s $< -o $@
 
-all:			$(NAME)
+all:			${NAME}
 
-$(NAME):		$(OBJS)
-				ar rcs $(NAME) $(OBJS)
+${NAME}:		${OBJS}
+				ar rcs ${NAME} ${OBJS}
 
 clean:
-				rm -rf $(OBJS) $(BONUS_OBJS)
+				rm -rf ${OBJS} ${BONUS_OBJS}
 
 fclean:			clean
-				rm -rf $(NAME) $(BONUS) $(TEST) $(TEST_BONUS)
+				rm -rf ${NAME} ${BONUS} ${TEST} ${TEST_BONUS}
 
-re:				fclean $(NAME)
+re:				fclean ${NAME}
 
-test:			$(NAME)
-				gcc $(FLAGS) -o $(TEST) main.c  -L. -lasm
-				./$(TEST) < Makefile
+test:			${NAME}
+				gcc ${FLAGS} -o ${TEST} main.c  -L. -lasm -I${INC}
+				./${TEST} < Makefile
 
 .PHONY:			clean fclean re test

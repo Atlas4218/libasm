@@ -1,6 +1,6 @@
             global  ft_strdup
-            extern  _malloc
-            extern  errno_location
+            extern  malloc
+            extern  __errno_location
             extern  ft_strlen
             extern  ft_strcpy
             section .data
@@ -13,7 +13,7 @@ ft_strdup:
             push    rdi
             mov     rdi, rax
             inc     rdi
-            call    _malloc
+            call    malloc
             cmp     rax, 0
             jle     error
             mov     rsi, rax
@@ -23,6 +23,6 @@ ft_strdup:
 error:
             neg     rax
             mov     rdi, rax
-            call    errno_location
+            call    __errno_location
 done:
             ret
