@@ -83,6 +83,6 @@ int		main(void)
 	DUP("long message")
 	DUP("")
 	printf("-done\n");
-
+	errno = 0;
 	return (0);
 }

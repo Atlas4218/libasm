@@ -12,8 +12,8 @@ SRCS		=	${SRC}/ft_strlen.s\
 
 OBJS		= 	${patsubst %,${BIN}/%, ${notdir ${SRCS:.s=.o}}}
 NA			=	nasm
-NA_FLAGS	=	-f elf64
-FLAGS 		=	-Wall -Werror -Wextra
+NA_FLAGS	=	-felf64
+FLAGS 		=	-g3 -Wall -Werror -Wextra -no-pie
 NAME		=	libasm.a
 
 TEST		=	test
@@ -37,6 +37,6 @@ re:				fclean ${NAME}
 
 test:			${NAME}
 				gcc ${FLAGS} -o ${TEST} main.c  -L. -lasm -I${INC}
-				./${TEST} < Makefile
+				./${TEST}
 
 .PHONY:			clean fclean re test
