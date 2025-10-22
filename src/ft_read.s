@@ -4,15 +4,17 @@
 
 ft_read:
             xor      rax, rax
-            mov      rax, 3
+            mov      rax, 0      ; syscall: read
             syscall
             cmp     rax, 0
-            jl     error
+            jl      error
+            ;mov     byte [rsi+rax], 0
             jmp     done
 error:
             neg     rax
-            mov     rdi, rax
+            mov     rdx, rax
             call    __errno_location
+            mov      dword [rax], edx
             mov     rax, -1
 done:
             ret

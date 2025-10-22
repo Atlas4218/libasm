@@ -4,7 +4,7 @@
 
 ft_write:
             xor     rax, rax
-            mov     rax, 4
+            mov     rax, 1        ; syscall number: write
             syscall
             cmp     rax, 0
             jl     error

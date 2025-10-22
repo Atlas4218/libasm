@@ -16,8 +16,8 @@ ft_strdup:
             call    malloc
             cmp     rax, 0
             jle     error
-            mov     rsi, rax
-            pop     rdi
+            pop     rsi
+            mov     rdi, rax
             call    ft_strcpy
             jmp     done
 error:

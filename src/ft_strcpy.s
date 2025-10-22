@@ -8,10 +8,10 @@ ft_strcpy:
 increment:  
             inc     rax
 copy:
-            mov     dl, byte[rdi+rax]
-            mov     byte[rsi+rax], dl
-            cmp     byte [rdi+rax], 0
+            mov     dl, byte[rsi+rax]
+            mov     byte[rdi+rax], dl
+            cmp     byte [rsi+rax], 0
             jne     increment
 done:       
-            mov     rax, rsi
+            mov     rax, rdi
             ret
