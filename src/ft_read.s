@@ -8,7 +8,6 @@ ft_read:
             syscall
             cmp     rax, 0
             jl      error
-            ;mov     byte [rsi+rax], 0
             jmp     done
 error:
             neg     rax

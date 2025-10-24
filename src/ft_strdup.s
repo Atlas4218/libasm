@@ -22,7 +22,9 @@ ft_strdup:
             jmp     done
 error:
             neg     rax
-            mov     rdi, rax
+            mov     rdx, rax
             call    __errno_location
+            mov      dword [rax], edx
+            mov     rax, -1
 done:
             ret
