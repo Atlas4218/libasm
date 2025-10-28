@@ -13,7 +13,7 @@ SRCS		=	${SRC}/ft_strlen.s\
 OBJS		= 	${patsubst %,${BIN}/%, ${notdir ${SRCS:.s=.o}}}
 NA			=	nasm
 NA_FLAGS	=	-felf64
-FLAGS 		=	-g3 -Wall -Werror -Wextra -no-pie
+FLAGS 		=	-g3 -Wall -Werror -Wextra
 NAME		=	libasm.a
 
 TEST		=	test

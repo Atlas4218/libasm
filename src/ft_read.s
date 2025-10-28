@@ -12,7 +12,7 @@ ft_read:
 error:
             neg     rax
             mov     rdx, rax
-            call    __errno_location
+            call    __errno_location wrt ..plt
             mov      dword [rax], edx
             mov     rax, -1
 done:

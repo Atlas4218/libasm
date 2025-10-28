@@ -13,7 +13,7 @@ ft_strdup:
             push    rdi
             mov     rdi, rax
             inc     rdi
-            call    malloc
+            call    malloc wrt ..plt
             cmp     rax, 0
             jle     error
             pop     rsi
@@ -23,7 +23,7 @@ ft_strdup:
 error:
             neg     rax
             mov     rdx, rax
-            call    __errno_location
+            call    __errno_location wrt ..plt
             mov      dword [rax], edx
             mov     rax, -1
 done:
